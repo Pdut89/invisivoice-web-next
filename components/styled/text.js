@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import css from '@styled-system/css'
 import { typography, system } from 'styled-system'
 
-import Box from '../box'
+import Box from './box'
 
 // const VARIANTS = ({ hasError, color, fontSize, fontWeight, lineHeight }) =>
 //   variant({
@@ -84,9 +84,8 @@ import Box from '../box'
 //     },
 //   })
 
-const Text = styled(Box).attrs(({ variant, as, ...rest }) => ({
-  as: as || TYPE_MAP[variant] || 'p',
-  ...(variant === 'ghost' && { 'aria-hidden': true }),
+const Text = styled(Box).attrs(({ variant, as = 'span', ...rest }) => ({
+  as,
   ...rest,
 }))(
   system({

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/Pdut89/nameless-next-web/compare/v1.0.0...v1.0.1) (2022-10-15)
+
+
+### Bug Fixes
+
+* release branch main to dev ([ff9b393](https://github.com/Pdut89/nameless-next-web/commit/ff9b393af249071f5e671ebb1075d262148bedeb))
+
 ## 1.0.0 (2022-10-15)
 
 

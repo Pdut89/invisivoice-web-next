@@ -8,6 +8,7 @@ const colors = {
     default: '#8a4646',
   },
   gray: {
+    xlight: '#edebeb',
     light: '#c2c2c2',
     default: '#5f6163',
   },
@@ -43,11 +44,19 @@ export const fontWeights = {
   extrabold: 700,
 }
 
+const radii = {
+  xxsmall: '0.25rem',
+  xsmall: '0.5rem',
+  small: '0.75rem',
+  medium: '1rem',
+}
+
 const theme = {
   colors,
   borders,
   fontSizes,
   fontWeights,
+  radii,
 }
 
 export default theme

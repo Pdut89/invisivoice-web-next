@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyles = createGlobalStyle`
   html,
   body {
-    color: ${({ theme }) => theme.colors.primary};
     padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -18,6 +17,9 @@ const GlobalStyles = createGlobalStyle`
   }
   ul, ol {
     text-decoration: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 `
 

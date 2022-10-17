@@ -1,23 +1,23 @@
 import styled from 'styled-components'
-import css from '@styled-system/css'
 
 import { Flex, Text } from 'components/styled'
 
 export const Wrapper = styled(Flex).attrs((props) => ({
   position: 'relative',
-  flexDirection: 'column',
+  width: '100%',
+  flexDirection: 'column-reverse',
   alignSelf: 'flex-start',
   mb: '1.5rem',
   ...props,
 }))``
 
 export const Label = styled(Text).attrs(
-  ({ inputHasError, inputId, as, ...rest }) => ({
+  ({ inputHasError, inputId, as, isActive, ...rest }) => ({
     as: 'label',
-    for: inputId,
+    htmlFor: inputId,
     fontSize: 'small',
     fontWeight: 'semi',
-    color: 'gray.default',
+    color: isActive ? 'primary.default' : 'gray.default',
     ...rest,
   })
 )``
@@ -28,9 +28,14 @@ export const Alert = styled(Text).attrs(({ inputId }) => ({
   fontWeight: 'medium',
   color: 'red.0',
   mt: '0.3em',
+  position: 'absolute',
+  bottom: '0',
+  left: '0',
+  lineHeight: '1.5em',
+  transform: 'translateY(100%)',
 }))``
 
-export const Input = styled(Text).attrs(({ hasError, id }) => ({
+export const Input = styled(Text).attrs(({ hasError, label, id }) => ({
   as: 'input',
   id,
   fontSize: 'medium',
@@ -39,19 +44,21 @@ export const Input = styled(Text).attrs(({ hasError, id }) => ({
   background: 'transparent',
   mt: '0.3rem',
   py: '0.3rem',
+  ...(label && {
+    'aria-labelledby': label,
+  }),
+
   ...(hasError && {
     'aria-invalid': 'true',
     'aria-describedby': id + '-error',
   }),
-}))(
-  css({
-    outline: 'none',
-    cursor: 'pointer',
-    '&:focus-visible': {
-      borderBottom: 'primary.default',
-    },
-    '&:focus-visible + label': {
-      color: 'primary.default',
-    },
-  })
-)
+}))`
+  outline: none;
+  cursor: pointer;
+  &:focus-visible {
+    border-bottom: ${({ theme }) => theme.borders.primary.default};
+  }
+  &:focus-visible + label {
+    color: ${({ theme }) => theme.colors.primary.default};
+  }
+`

@@ -11,6 +11,7 @@ const Select = ({
   label,
   options,
   errorMessage,
+  hasError = !!errorMessage,
   value,
   onChange = console.log,
   ...rest
@@ -30,6 +31,7 @@ const Select = ({
         label={label}
         value={value}
         onChange={({ target }) => onChange(target.value)}
+        hasError={hasError}
         {...rest}
       >
         <option hidden disabled selected value="">
@@ -41,7 +43,7 @@ const Select = ({
           </option>
         ))}
       </NativeSelect>
-      <Label isActive={isExpanded} inputId={id}>
+      <Label isActive={isExpanded} inputId={id} hasError={hasError}>
         {label}
       </Label>
 
@@ -62,6 +64,7 @@ const Select = ({
           boxShadow="0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.5)"
           borderRadius="xxsmall"
           bg="white"
+          zIndex="1"
         >
           {options.map(({ label, value: dataValue }) => (
             <CustomOption

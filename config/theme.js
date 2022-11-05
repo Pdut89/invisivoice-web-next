@@ -19,6 +19,7 @@ const colors = {
 }
 
 const borders = {
+  white: `0.1rem solid ${colors.white}`,
   primary: {
     light: `0.1rem solid ${colors.primary.light}`,
     default: `0.1rem solid ${colors.primary.default}`,
@@ -26,6 +27,7 @@ const borders = {
   },
   gray: {
     light: `0.1rem solid ${colors.gray.light}`,
+    default: `0.1rem solid ${colors.gray.default}`,
   },
 }
 

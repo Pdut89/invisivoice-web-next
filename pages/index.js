@@ -1,12 +1,18 @@
+import Head from 'next/head'
+
+import Checkbox from 'components/inputs/checkbox'
 import Select from 'components/inputs/select'
 import TextInput from 'components/inputs/text'
 import { Flex } from 'components/styled'
-import Head from 'next/head'
 
 const OPTIONS = [
   {
     label: 'One',
     value: 'one',
+  },
+  {
+    label: 'Two',
+    value: 'two',
   },
 ]
 
@@ -34,14 +40,15 @@ const Home = () => {
           console.log('submit', e)
         }}
       >
-        <TextInput name="firstName" label="Name" required />
+        <TextInput name="firstName" label="Name" />
         <TextInput name="lastName" label="Surname" />
         <Select
           name="branch"
           label="Select branch"
           options={OPTIONS}
-          required
+          // value={OPTIONS[1].value}
         />
+        <Checkbox legend="Select applicable options" options={OPTIONS} />
         <button type="submit">submit</button>
       </Flex>
     </>

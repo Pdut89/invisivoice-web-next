@@ -12,15 +12,22 @@ export const Wrapper = styled(Flex).attrs((props) => ({
 }))``
 
 export const Label = styled(Text).attrs(
-  ({ inputHasError, inputId, as, isActive, ...rest }) => ({
+  ({ inputId, as, isActive, hasError, ...rest }) => ({
     as: 'label',
+    id: inputId + '-label',
     htmlFor: inputId,
     fontSize: 'small',
     fontWeight: 'semi',
     color: isActive ? 'primary.default' : 'gray.default',
     ...rest,
   })
-)``
+)`
+  color: ${({ theme, hasError }) => hasError && theme.colors.red} !important;
+`
+
+export const Legend = styled(Label).attrs({
+  as: 'legend',
+})``
 
 export const Alert = styled(Text).attrs(({ inputId }) => ({
   id: inputId + '-error',
@@ -45,9 +52,8 @@ export const Input = styled(Text).attrs(({ hasError, label, id }) => ({
   mt: '0.3rem',
   py: '0.3rem',
   ...(label && {
-    'aria-labelledby': label,
+    'aria-labelledby': id + '-label',
   }),
-
   ...(hasError && {
     'aria-invalid': 'true',
     'aria-describedby': id + '-error',
@@ -55,9 +61,11 @@ export const Input = styled(Text).attrs(({ hasError, label, id }) => ({
 }))`
   outline: none;
   cursor: pointer;
+  &:hover,
   &:focus-visible {
     border-bottom: ${({ theme }) => theme.borders.primary.default};
   }
+  &:hover + label,
   &:focus-visible + label {
     color: ${({ theme }) => theme.colors.primary.default};
   }

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Pdut89/nameless-next-web/compare/v1.0.1...v1.1.0) (2022-11-05)
+
+
+### Features
+
+* add checkbox input ([42fd619](https://github.com/Pdut89/nameless-next-web/commit/42fd61968d76498d156eb4b29839fc4fe6d658bd))
+
 ## [1.0.1](https://github.com/Pdut89/nameless-next-web/compare/v1.0.0...v1.0.1) (2022-10-15)
 
 

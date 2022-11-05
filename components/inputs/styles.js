@@ -9,7 +9,14 @@ export const Wrapper = styled(Flex).attrs((props) => ({
   alignSelf: 'flex-start',
   mb: '1.5rem',
   ...props,
-}))``
+}))`
+  &:hover {
+    > label,
+    legend {
+      color: ${({ theme }) => theme.colors.primary.default};
+    }
+  }
+`
 
 export const Label = styled(Text).attrs(
   ({ inputId, as, isActive, hasError, ...rest }) => ({

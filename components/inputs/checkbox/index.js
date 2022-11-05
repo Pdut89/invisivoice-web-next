@@ -10,8 +10,11 @@ const Checkbox = ({
   options,
   errorMessage,
   hasError = !!errorMessage,
+  type = 'checkbox',
+  variant = 'default',
 }) => {
   const id = useId()
+
   return (
     <Wrapper>
       {errorMessage && <Alert inputId={id}>{errorMessage}</Alert>}
@@ -29,13 +32,15 @@ const Checkbox = ({
                 <StyledInput
                   id={inputId}
                   value={value}
-                  type="checkbox"
+                  type={type}
                   name={name}
                   label={label}
                   alertId={id}
                   hasError={hasError}
                 />
-                <Label inputId={inputId}>{label}</Label>
+                <Label inputId={inputId} type={type} variant={variant}>
+                  {label}
+                </Label>
               </Flex>
             )
           })}

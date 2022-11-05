@@ -1,7 +1,59 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Text, Flex } from 'components/styled'
 import { Input } from '../styles'
+
+const VARIANTS = {
+  checkbox: {
+    default: {
+      label: css`
+        &::before {
+          width: 1.1rem;
+          height: 1.1rem;
+          background-color: white;
+          border: ${({ theme }) => theme.borders.gray.default};
+          margin-right: 0.4rem;
+          border-radius: ${({ theme }) => theme.radii.xxsmall};
+        }
+        &::after {
+          top: 0.3rem;
+          left: 0.25rem;
+          color: ${({ theme }) => theme.colors.white};
+          height: 0.35rem;
+          width: 0.65rem;
+          border-left: ${({ theme }) => theme.borders.white};
+          border-bottom: ${({ theme }) => theme.borders.white};
+          transform: rotate(-45deg);
+        }
+      `,
+    },
+  },
+  radio: {
+    default: {
+      label: css`
+        &::before {
+          width: 1.1rem;
+          height: 1.1rem;
+          background-color: white;
+          border: ${({ theme }) => theme.borders.gray.default};
+          margin-right: 0.4rem;
+          border-radius: ${({ theme }) => theme.radii.full};
+        }
+        &::after {
+          width: 1.1rem;
+          height: 1.1rem;
+          top: 0;
+          left: 0;
+          color: ${({ theme }) => theme.colors.white};
+          border-radius: ${({ theme }) => theme.radii.full};
+          background-color: ${({ theme }) => theme.colors.primary.light};
+          border: ${({ theme }) => theme.borders.primary.dark};
+          background-image: ${({ theme }) => theme.gradients.radio};
+        }
+      `,
+    },
+  },
+}
 
 export const Label = styled(Text).attrs(({ inputId }) => ({
   as: 'label',
@@ -21,31 +73,18 @@ export const Label = styled(Text).attrs(({ inputId }) => ({
   &::before {
     content: '';
     position: absolute;
+    display: inline-block;
     top: 0;
     left: 0;
-    display: inline-block;
-    width: 1.1rem;
-    height: 1.1rem;
-    background-color: white;
-    border: ${({ theme }) => theme.borders.gray.default};
-    margin-right: 0.4rem;
-    transition: 0.2s;
-    border-radius: ${({ theme }) => theme.radii.xxsmall};
   }
   /* checkmark */
   &::after {
     content: '';
     position: absolute;
-    top: 0.3rem;
-    left: 0.25rem;
     display: inline-block;
-    color: ${({ theme }) => theme.colors.white};
-    height: 0.35rem;
-    width: 0.65rem;
-    border-left: ${({ theme }) => theme.borders.white};
-    border-bottom: ${({ theme }) => theme.borders.white};
-    transform: rotate(-45deg);
   }
+
+  ${({ variant, type }) => VARIANTS[type][variant]?.label};
 `
 
 export const StyledInput = styled(Input).attrs(({ alertId, id, hasError }) => ({
@@ -90,8 +129,4 @@ export const Fieldset = styled(Flex).attrs({
   border: 'none',
   m: '0',
   p: '0',
-})`
-  &:hover legend {
-    color: ${({ theme }) => theme.colors.primary.default};
-  }
-`
+})``

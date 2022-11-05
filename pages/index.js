@@ -4,6 +4,7 @@ import Checkbox from 'components/inputs/checkbox'
 import Select from 'components/inputs/select'
 import TextInput from 'components/inputs/text'
 import { Flex } from 'components/styled'
+import Radio from 'components/inputs/radio'
 
 const OPTIONS = [
   {
@@ -48,7 +49,13 @@ const Home = () => {
           options={OPTIONS}
           // value={OPTIONS[1].value}
         />
-        <Checkbox legend="Select applicable options" options={OPTIONS} />
+        <Checkbox
+          name="color"
+          legend="Select applicable options"
+          options={OPTIONS}
+        />
+
+        <Radio legend="Select one option" name="size" options={OPTIONS} />
         <button type="submit">submit</button>
       </Flex>
     </>

@@ -51,6 +51,11 @@ const radii = {
   xsmall: '0.5rem',
   small: '0.75rem',
   medium: '1rem',
+  full: '9999px',
+}
+
+const gradients = {
+  radio: `radial-gradient(${colors.primary.dark} 0%, ${colors.primary.dark} 50%, ${colors.white} 50%, ${colors.white} 70%, ${colors.primary.dark} 70%, ${colors.primary.dark} 60%);`,
 }
 
 const theme = {
@@ -58,6 +63,7 @@ const theme = {
   borders,
   fontSizes,
   fontWeights,
+  gradients,
   radii,
 }
 

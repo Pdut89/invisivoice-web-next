@@ -34,7 +34,7 @@ const Select = ({
         hasError={hasError}
         {...rest}
       >
-        <option hidden disabled selected value="">
+        <option hidden disabled defaultValue value="">
           {`Select ${name}`}
         </option>
         {options.map(({ label, value }) => (

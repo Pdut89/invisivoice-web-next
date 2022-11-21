@@ -6,6 +6,7 @@ const useFirestoreMethods = () => {
     const { addDoc, db, collection } = await getFirestoreMethods()
     await addDoc(collection(db, collectionName), data)
   }, [])
+
   const getData = useCallback(async (collectionName) => {
     const fetchAndExtract = async () => {
       const { getDocs, db, collection } = await getFirestoreMethods()

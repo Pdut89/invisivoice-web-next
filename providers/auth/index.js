@@ -1,17 +1,21 @@
+import Script from 'next/script'
 import {
   createContext,
   useEffect,
   useContext,
   useState,
   useCallback,
+  useMemo,
 } from 'react'
 import { getFirebaseAuth } from 'utils/firebase'
 
 const AuthContext = createContext({})
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children, config: { providers = {} } }) => {
   const [isLoadingInitial, setIsLoadingInitial] = useState(true)
   const [user, setUser] = useState(null)
+
+  const withGoogle = providers.google?.clientId
 
   const handleAuthStateChange = useCallback(async (user) => {
     try {
@@ -43,10 +47,29 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscriber && unsubscriber()
   }, [handleAuthStateChange])
 
+  const GoogleScript = useMemo(() => {
+    if (!withGoogle) return null
+    return (
+      <Script
+        id="google-one-tap-script"
+        strategy="afterInteractive"
+        src="https://accounts.google.com/gsi/client"
+        onError={(error) => {
+          console.error('Google one tap script failed to load: ', error)
+        }}
+      />
+    )
+  }, [withGoogle])
+
   return (
     <AuthContext.Provider
-      value={{ isLoadingInitial, user, isAuthenticated: !!user?.uid }}
+      value={{
+        isLoadingInitial,
+        user,
+        isAuthenticated: !!user?.uid,
+      }}
     >
+      {GoogleScript}
       {children}
     </AuthContext.Provider>
   )

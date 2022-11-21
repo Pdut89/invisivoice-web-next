@@ -12,7 +12,7 @@ import {
   system,
 } from 'styled-system'
 
-const Box = styled('div')(
+const Box = styled.div(
   color,
   layout,
   position,

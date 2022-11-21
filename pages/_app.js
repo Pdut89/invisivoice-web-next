@@ -2,7 +2,7 @@ import { ThemeProvider } from 'styled-components'
 
 import theme from 'config/theme'
 import GlobalStyles from 'components/global-styles'
-import AuthProvider from 'context/auth'
+import AuthProvider from 'providers/auth'
 
 const MyApp = ({ Component, pageProps }) => {
   return (

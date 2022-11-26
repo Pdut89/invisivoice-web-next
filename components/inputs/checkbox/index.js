@@ -1,8 +1,7 @@
-import { Flex } from 'components/styled'
 import { useId } from 'react'
 
 import { Alert, Wrapper, Legend } from '../styles'
-import { StyledInput, Label, Fieldset } from './styles'
+import { StyledInput, Label, Fieldset, OptionsList, ListItem } from './styles'
 
 const Checkbox = ({
   legend,
@@ -24,11 +23,11 @@ const Checkbox = ({
           {legend}
         </Legend>
 
-        <Flex as="ul" flexDirection="column" mt="0.5rem">
+        <OptionsList>
           {options.map(({ value, label }) => {
             const inputId = id + value
             return (
-              <Flex key={value} as="li" alignItems="center">
+              <ListItem key={inputId}>
                 <StyledInput
                   id={inputId}
                   value={value}
@@ -41,10 +40,10 @@ const Checkbox = ({
                 <Label inputId={inputId} type={type} variant={variant}>
                   {label}
                 </Label>
-              </Flex>
+              </ListItem>
             )
           })}
-        </Flex>
+        </OptionsList>
       </Fieldset>
     </Wrapper>
   )

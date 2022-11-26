@@ -1,7 +1,5 @@
-const { default: Checkbox } = require('../checkbox')
+import Checkbox from '../checkbox'
 
-const Radio = (props) => {
-  return <Checkbox type="radio" {...props} />
-}
+const Radio = (props) => <Checkbox type="radio" {...props} />
 
 export default Radio

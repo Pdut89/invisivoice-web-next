@@ -1,10 +1,18 @@
 import Head from 'next/head'
+import styled from 'styled-components'
+import { useForm } from 'react-hook-form'
 
 import Checkbox from 'components/inputs/checkbox'
 import Select from 'components/inputs/select'
 import TextInput from 'components/inputs/text'
-import { Flex } from 'components/styled'
+
 import Radio from 'components/inputs/radio'
+
+const Form = styled.form`
+  flex-direction: column;
+  width: 20em;
+  padding: 1em;
+`
 
 const OPTIONS = [
   {
@@ -18,6 +26,12 @@ const OPTIONS = [
 ]
 
 const Home = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
   return (
     <>
       <Head>
@@ -31,23 +45,19 @@ const Home = () => {
 
       <h1>Nameless</h1>
 
-      <Flex
-        as="form"
-        flexDirection="column"
-        width="18rem"
-        p="1em"
-        onSubmit={(e) => {
-          e.preventDefault()
-          console.log('submit', e)
-        }}
-      >
-        <TextInput name="firstName" label="Name" />
+      <Form onSubmit={handleSubmit((data) => console.log({ data }))}>
+        <TextInput
+          name="firstName"
+          label="Name"
+          errorMessage={errors.firstName?.type}
+          {...register('firstName', { required: true })}
+        />
         <TextInput name="lastName" label="Surname" />
         <Select
           name="branch"
           label="Select branch"
           options={OPTIONS}
-          // value={OPTIONS[1].value}
+          value={OPTIONS[1].value}
         />
         <Checkbox
           name="color"
@@ -57,7 +67,7 @@ const Home = () => {
 
         <Radio legend="Select one option" name="size" options={OPTIONS} />
         <button type="submit">submit</button>
-      </Flex>
+      </Form>
     </>
   )
 }

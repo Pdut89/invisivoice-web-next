@@ -1,9 +1,7 @@
 import { useId, useRef, useState } from 'react'
 
-import { Flex } from 'components/styled'
-
 import { Alert, Label, Wrapper } from '../styles'
-import { CustomSelect, CustomOption, NativeSelect } from './styles'
+import { NativeSelect, CustomSelect, OptionsList, CustomOption } from './styles'
 import useHandleClickOutside from 'utils/hooks/use-handle-click-outside'
 
 const Select = ({
@@ -53,19 +51,7 @@ const Select = ({
       </CustomSelect>
 
       {isExpanded && (
-        <Flex
-          as="ul"
-          flexDirection="column"
-          position="absolute"
-          top="100%"
-          left="0"
-          width="100%"
-          py="0.5rem"
-          boxShadow="0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.5)"
-          borderRadius="xxsmall"
-          bg="white"
-          zIndex="1"
-        >
+        <OptionsList>
           {options.map(({ label, value: dataValue }) => (
             <CustomOption
               key={dataValue}
@@ -80,7 +66,7 @@ const Select = ({
               {label}
             </CustomOption>
           ))}
-        </Flex>
+        </OptionsList>
       )}
     </Wrapper>
   )

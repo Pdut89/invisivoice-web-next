@@ -1,6 +1,4 @@
 import styled, { css } from 'styled-components'
-
-import { Text, Flex } from 'components/styled'
 import { Input } from '../styles'
 
 const VARIANTS = {
@@ -55,19 +53,17 @@ const VARIANTS = {
   },
 }
 
-export const Label = styled(Text).attrs(({ inputId }) => ({
-  as: 'label',
+export const Label = styled.label.attrs(({ inputId }) => ({
   id: inputId + 'label',
   htmlFor: inputId,
-  alignItems: 'center',
-  position: 'relative',
-  lineHeight: 1.4,
-  pl: '2rem',
 }))`
+  margin-top: 0.2rem;
+  align-items: center;
+  position: relative;
+  line-height: 1.4;
+  padding-left: 2rem;
   user-select: none;
   cursor: pointer;
-
-  margin-top: 0.2rem;
 
   /* checkbox background */
   &::before {
@@ -88,12 +84,6 @@ export const Label = styled(Text).attrs(({ inputId }) => ({
 `
 
 export const StyledInput = styled(Input).attrs(({ alertId, id, hasError }) => ({
-  position: 'absolute',
-  margin: '0',
-  padding: '0',
-  opacity: '0',
-  height: '0',
-  width: '0',
   ...(id && {
     'aria-labelledby': id + '-label',
   }),
@@ -102,6 +92,12 @@ export const StyledInput = styled(Input).attrs(({ alertId, id, hasError }) => ({
     'aria-describedby': alertId + '-error',
   }),
 }))`
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
   pointer-events: none;
 
   &:checked + label::before {
@@ -123,10 +119,21 @@ export const StyledInput = styled(Input).attrs(({ alertId, id, hasError }) => ({
   }
 `
 
-export const Fieldset = styled(Flex).attrs({
-  as: 'fieldset',
-  flexDirection: 'column',
-  border: 'none',
-  m: '0',
-  p: '0',
-})``
+export const Fieldset = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin: 0;
+  padding: 0;
+`
+
+export const OptionsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+`
+
+export const ListItem = styled.li`
+  display: flex;
+  align-items: center;
+`

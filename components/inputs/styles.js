@@ -1,15 +1,12 @@
 import styled from 'styled-components'
 
-import { Flex, Text } from 'components/styled'
-
-export const Wrapper = styled(Flex).attrs((props) => ({
-  position: 'relative',
-  width: '100%',
-  flexDirection: 'column-reverse',
-  alignSelf: 'flex-start',
-  mb: '1.5rem',
-  ...props,
-}))`
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  align-self: flex-start;
+  position: relative;
+  margin-bottom: 1.5em;
+  width: 100%;
   &:hover {
     > label,
     legend {
@@ -18,46 +15,41 @@ export const Wrapper = styled(Flex).attrs((props) => ({
   }
 `
 
-export const Label = styled(Text).attrs(
-  ({ inputId, as, isActive, hasError, ...rest }) => ({
-    as: 'label',
-    id: inputId + '-label',
-    htmlFor: inputId,
-    fontSize: 'small',
-    fontWeight: 'semi',
-    color: isActive ? 'primary.default' : 'gray.default',
-    ...rest,
-  })
-)`
-  color: ${({ theme, hasError }) => hasError && theme.colors.red} !important;
+export const Label = styled.label.attrs(({ inputId }) => ({
+  id: inputId + '-label',
+  htmlFor: inputId,
+}))`
+  font-weight: ${({ theme }) => theme.fontWeights.semi};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  color: ${({ theme: { colors }, isActive, hasError }) =>
+    hasError
+      ? colors.red
+      : isActive
+      ? colors.primary.default
+      : colors.gray.default};
 `
 
 export const Legend = styled(Label).attrs({
   as: 'legend',
 })``
 
-export const Alert = styled(Text).attrs(({ inputId }) => ({
+export const Alert = styled.span.attrs(({ inputId }) => ({
   id: inputId + '-error',
-  fontSize: 'xsmall',
-  fontWeight: 'medium',
-  color: 'red.0',
-  mt: '0.3em',
-  position: 'absolute',
-  bottom: '0',
-  left: '0',
-  lineHeight: '1.5em',
-  transform: 'translateY(100%)',
-}))``
+}))`
+  font-size: ${({ theme }) => theme.fontSizes.xsmall};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  color: ${({ theme }) => theme.colors.red};
+  margin-top: 0.3em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  lineheight: 1.5em;
+  transform: translateY(100%);
+`
 
-export const Input = styled(Text).attrs(({ hasError, label, id }) => ({
+export const Input = styled.input.attrs(({ hasError, label, id }) => ({
   as: 'input',
   id,
-  fontSize: 'medium',
-  border: 'none',
-  borderBottom: 'gray.light',
-  background: 'transparent',
-  mt: '0.3rem',
-  py: '0.3rem',
   ...(label && {
     'aria-labelledby': id + '-label',
   }),
@@ -66,6 +58,13 @@ export const Input = styled(Text).attrs(({ hasError, label, id }) => ({
     'aria-describedby': id + '-error',
   }),
 }))`
+  width: 100%;
+  border: none;
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+  border-bottom: ${({ theme }) => theme.borders.gray.light};
+  background-color: ${({ theme }) => theme.colors.transparent};
+  margin-top: 0.3rem;
+  padding: 0.3rem 0;
   outline: none;
   cursor: pointer;
   &:hover,

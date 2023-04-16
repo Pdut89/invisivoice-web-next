@@ -10,9 +10,9 @@ const useFirestoreMethods = () => {
   const getData = useCallback(async (collectionName) => {
     const fetchAndExtract = async () => {
       const { getDocs, db, collection } = await getFirestoreMethods()
-      const { empty, metadata, size, docs } = await getDocs(
-        collection(db, collectionName)
-      )
+      const collectionRef = collection(db, collectionName)
+      const { empty, metadata, size, docs } = await getDocs(collectionRef)
+      console.log({ empty, metadata, size, docs })
       return {
         data: docs.map((doc) => doc.data()),
         count: size,

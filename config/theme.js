@@ -29,6 +29,9 @@ const borders = {
     light: `0.1rem solid ${colors.gray.light}`,
     default: `0.1rem solid ${colors.gray.default}`,
   },
+  status: {
+    error: `0.1rem solid ${colors.red}`,
+  },
 }
 
 const fontSizes = {

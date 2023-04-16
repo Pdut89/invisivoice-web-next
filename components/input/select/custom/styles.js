@@ -1,10 +1,17 @@
 import styled from 'styled-components'
 import { Input } from '../styles'
 
+// TODO: incorporate below for custom select label
+// color: ${({ theme: { colors }, isActive, hasError }) =>
+//   hasError
+//     ? colors.red
+//     : isActive
+//     ? colors.primary.default
+//     : colors.gray.default};
+
 export const NativeSelect = styled(Input).attrs({
   as: 'select',
 })`
-  width: 100%;
   &:focus-visible {
     & ~ .customSelect {
       display: none;
@@ -12,7 +19,7 @@ export const NativeSelect = styled(Input).attrs({
   }
 `
 
-export const CustomSelect = styled(NativeSelect).attrs(({ isActive }) => ({
+export const StyledInput = styled(NativeSelect).attrs(({ isActive }) => ({
   as: 'div',
   ...(!isActive && {
     'aria-hidden': 'true',
